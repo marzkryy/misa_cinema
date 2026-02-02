@@ -1,0 +1,884 @@
+/* MisaCinema Custom Theme */
+:root {
+    --primary-red: #e50914;
+    --hover-red: #b20710;
+    --bg-black: #000000;
+    --bg-dark: #000000;
+    --text-white: #ffffff;
+    --text-gray: #b3b3b3;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Hide Number Input Arrows (Spinners) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* --- PENAMBAHAN BARU: Paksa semua pautan (links) jadi putih, KECUALI butang --- */
+a:not(.btn) {
+    color: var(--text-white) !important;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--primary-red) !important;
+}
+
+/* Khusus untuk tajuk movie dalam jadual Index supaya tidak gelap */
+.table tbody td a:not(.btn),
+.table td a:not(.btn) {
+    color: var(--text-white) !important;
+    font-weight: bold;
+}
+
+/* ----------------------------------------------------------- */
+
+.bg-cinema {
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('../img/main-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.login-page {
+    /* background: var(--bg-black); Remove override to show bg-cinema */
+    min-height: 100vh;
+}
+
+/* Navigation */
+.navbar {
+    background-color: #000000 !important;
+    border-bottom: 2px solid var(--primary-red);
+    padding: 1rem 2rem;
+    overflow: visible !important;
+    /* Ensure dropdowns aren't clipped */
+    z-index: 2000 !important;
+    /* Stay above everything else */
+}
+
+.navbar .container,
+.navbar .navbar-collapse {
+    overflow: visible !important;
+}
+
+.dropdown-menu {
+    z-index: 3000 !important;
+    border: 1px solid rgba(229, 9, 20, 0.2) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: var(--primary-red) !important;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.nav-link {
+    color: var(--text-gray) !important;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-red) !important;
+}
+
+/* Fix navbar brand wrapping */
+.navbar-brand {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Fix for navbar collapse conflicts (e.g. Milligram) */
+@media (max-width: 991.98px) {
+    .navbar {
+        padding: 0.8rem 1rem !important;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem !important;
+    }
+
+    .navbar-collapse.collapse:not(.show) {
+        display: none !important;
+    }
+
+    .navbar-collapse.collapse.show {
+        display: block !important;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 10px;
+        border: 1px solid rgba(229, 9, 20, 0.3);
+    }
+
+    .navbar-nav {
+        padding-top: 10px;
+    }
+
+    .nav-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 5px 0;
+    }
+
+    .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    .dropdown-menu-dark {
+        background-color: #000000 !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+}
+
+/* Handle Very Long Names in Navbar */
+.navbar-nav .nav-link {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-nav .nav-link {
+        max-width: 100%;
+        white-space: normal;
+    }
+}
+
+/* Global Button Standardization */
+.btn:not(.seat-btn) {
+    font-weight: 800 !important;
+    letter-spacing: 1px;
+    border-radius: 50px !important;
+    text-transform: uppercase;
+    padding: 10px 25px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.btn-primary:not(.seat-btn) {
+    background-color: var(--primary-red);
+    border-color: var(--primary-red);
+    color: #fff;
+}
+
+.btn-primary:not(.seat-btn):hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: var(--primary-red) !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.btn-danger:not(.seat-btn),
+.btn-danger-custom {
+    background-color: var(--primary-red) !important;
+    border-color: var(--primary-red) !important;
+    color: #fff !important;
+}
+
+.btn-danger:not(.seat-btn):hover,
+.btn-danger-custom:hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: var(--primary-red) !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline-danger:not(.seat-btn) {
+    border-color: var(--primary-red) !important;
+    color: var(--primary-red) !important;
+    background-color: transparent;
+}
+
+.btn-outline-danger:not(.seat-btn):hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: var(--primary-red) !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline-light:not(.seat-btn) {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: #fff !important;
+}
+
+.btn-outline-light:not(.seat-btn):hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: #000 !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline-secondary:not(.seat-btn) {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #aaa !important;
+}
+
+.btn-outline-secondary:not(.seat-btn):hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: #000 !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+
+/* Cards (Movies/Content) */
+.card {
+    background-color: var(--bg-dark);
+    border: none;
+    transition: transform 0.3s;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: var(--text-white);
+    font-weight: bold;
+}
+
+/* Stylish Management Tables */
+.table {
+    color: var(--text-white);
+    background: #000000 !important;
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table thead th {
+    background-color: var(--primary-red) !important;
+    color: white !important;
+    border: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    padding: 1.25rem 1rem;
+}
+
+/* --- PENAMBAHAN: Warna tajuk dalam View (Contoh: PAPAZOLA) --- */
+.bookings.view h2,
+.bookings.view h3,
+.view.content h2 {
+    color: var(--text-white) !important;
+    text-transform: uppercase;
+}
+
+/* --- PENAMBAHAN: Paksa warna butang aksi dalam jadual --- */
+/* Target specific untuk <a> dan <i> didalamnya */
+.table .btn-outline-light,
+.table .btn-outline-light i {
+    color: #f8f9fa !important;
+    border-color: #f8f9fa !important;
+}
+
+.table .btn-outline-warning,
+.table .btn-outline-warning i {
+    color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+
+.table .btn-outline-danger,
+.table .btn-outline-danger i {
+    color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+/* Hover States */
+.table .btn:hover i {
+    color: #000 !important;
+    /* Warna ikon jadi hitam bila hover background cerah */
+}
+
+/* Khas untuk button delete (danger) */
+.table .btn-outline-danger:hover i {
+    color: #fff !important;
+    /* Kekalkan putih jika background jadi merah */
+}
+
+/* --- PENAMBAHAN: Centerkan Ikon dalam Bulatan --- */
+.table .btn.rounded-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    line-height: 1;
+}
+
+/* --- PENAMBAHAN: Sembunyikan Flash Error asal (kerana sudah guna SweetAlert) --- */
+.message.error {
+    display: none !important;
+}
+
+/* --- Movie Hover Effect --- */
+.movie-card {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.movie-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.movie-card:hover .movie-overlay {
+    opacity: 1;
+}
+
+.movie-card img {
+    transition: transform 0.5s ease;
+}
+
+
+/* --- PENAMBAHAN: Custom Dark Scrollbar --- */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #cc0000;
+}
+
+/* Input Placeholders */
+.form-control::placeholder {
+    color: #aaaaaa !important;
+    opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+    color: #aaaaaa !important;
+}
+
+.form-control::-ms-input-placeholder {
+    color: #aaaaaa !important;
+}
+
+/* Custom Focus States */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-red) !important;
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25) !important;
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    color: #ffffff !important;
+}
+
+
+/* --- Pagination Standardization --- */
+.pagination .page-link {
+    transition: all 0.3s ease;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.pagination .page-link:hover {
+    background-color: var(--primary-red) !important;
+    border-color: var(--primary-red) !important;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.pagination .active .page-link,
+.pagination .active a,
+.pagination .active span {
+    background-color: transparent !important;
+    border-color: rgba(229, 9, 20, 0.5) !important;
+    color: var(--primary-red) !important;
+    font-weight: 800 !important;
+    box-shadow: none !important;
+}
+
+.pagination .disabled .page-link {
+    background-color: #111 !important;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- Table Visibility Enhancements --- */
+.table-dark {
+    --bs-table-bg: #000;
+    --bs-table-striped-bg: #050505;
+    --bs-table-hover-bg: rgba(229, 9, 20, 0.1);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-dark.table-hover tbody tr:hover {
+    background-color: rgba(229, 9, 20, 0.1) !important;
+    box-shadow: inset 0 0 10px rgba(229, 9, 20, 0.05);
+}
+
+.table-dark thead th {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.table-dark tbody td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* --- Global Auto-Scale & Seat Map Responsiveness --- */
+.seat-map-container {
+    width: 100%;
+    overflow: hidden;
+    /* Prevent horizontal scroll on container */
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.seat-map-scaler {
+    width: max-content;
+    padding: 20px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top center;
+    display: inline-block;
+}
+
+/* Ensure tables inside responsive containers look good */
+.table-responsive {
+    border-radius: 12px;
+    border: 1px solid rgba(229, 9, 20, 0.1);
+    margin-bottom: 1rem;
+}
+
+/* --- Global Action Button Standardization --- */
+.btn-action-icon {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease !important;
+    padding: 0 !important;
+}
+
+.btn-action-icon:hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3) !important;
+}
+
+.btn-action-icon:hover i {
+    color: #e50914 !important;
+}
+
+/* Specific variants if needed, but the hover override handles most */
+.btn-action-icon.btn-outline-danger:hover {
+    background-color: #e50914 !important;
+    border-color: #e50914 !important;
+}
+
+.btn-action-icon.btn-outline-danger:hover i {
+    color: #ffffff !important;
+}
+
+.btn-action-icon.btn-outline-warning:hover {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+
+.btn-action-icon.btn-outline-warning:hover i {
+    color: #000000 !important;
+}
+
+/* Global Password Toggle Styling */
+.btn-toggle-pass {
+    transition: all 0.2s ease-in-out !important;
+}
+
+.btn-toggle-pass:hover {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+.btn-toggle-pass:hover i {
+    color: #000000 !important;
+}
+
+/* Global Select Dropdown Fix (Dark Theme) */
+select option,
+.form-select option {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+/* Premium Footer Styling */
+.footer {
+    background-color: #000000;
+}
+
+.footer-title {
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff !important;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.7) !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none !important;
+}
+
+.social-link:hover {
+    background: var(--primary-red) !important;
+    border-color: var(--primary-red) !important;
+    color: #fff !important;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 20px rgba(229, 9, 20, 0.3);
+}
+
+/* Premium Footer Customer Pills */
+.footer-customer-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.f-customer-pill {
+    padding: 14px 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.f-customer-pill i {
+    font-size: 1.1rem;
+    color: var(--primary-red);
+    margin-right: 12px;
+    transition: transform 0.3s ease;
+}
+
+.f-customer-pill:hover {
+    background: rgba(229, 9, 20, 0.15) !important;
+    border-color: rgba(229, 9, 20, 0.4) !important;
+    color: #fff !important;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(229, 9, 20, 0.1);
+}
+
+.f-customer-pill:hover i {
+    transform: scale(1.2) rotate(15deg);
+    color: #fff;
+}
+
+/* Premium Footer Dropdown */
+.dropdown-menu-premium {
+    background: rgba(10, 10, 10, 0.95) !important;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    min-width: 200px;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.f-customer-pill.dropdown-toggle::after {
+    display: none !important;
+    /* Remove default arrow */
+}
+
+.dropdown-menu-premium .dropdown-item {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu-premium .dropdown-item:hover {
+    background: rgba(229, 9, 20, 0.1) !important;
+    color: #fff !important;
+    transform: translateX(5px);
+}
+
+.dropdown-menu-premium .dropdown-item i {
+    width: 20px;
+    text-align: center;
+}
+
+.tracking-widest {
+    letter-spacing: 4px;
+}
+
+@media (max-width: 767.98px) {
+    .footer-title {
+        font-size: 1.1rem;
+    }
+
+    /* Movie Poster Fixes (Global) */
+    .movie-card img {
+        object-fit: cover;
+    }
+
+    .movie-card-wrapper {
+        min-width: 180px !important;
+        width: 180px !important;
+    }
+
+    #nowShowingCarousel {
+        gap: 1rem !important;
+    }
+}
+
+
+/* ============================================
+   MOBILE RESPONSIVENESS ENHANCEMENTS
+   ============================================ */
+
+/* Dashboard Stats Cards - Mobile */
+@media (max-width: 575.98px) {
+    .container-fluid {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    .card-body {
+        padding: 1rem !important;
+    }
+
+    /* Stats card text sizing */
+    .card-body h2 {
+        font-size: 1.3rem !important;
+    }
+
+    .card-body .text-uppercase.small {
+        font-size: 0.65rem !important;
+    }
+}
+
+/* Dashboard Table - Mobile Optimization */
+@media (max-width: 991.98px) {
+
+    /* Hide Date column on tablets and below */
+    .table thead th:nth-child(4),
+    .table tbody td:nth-child(4) {
+        display: none;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    /* Also hide Customer column on mobile */
+    .table thead th:nth-child(2),
+    .table tbody td:nth-child(2) {
+        display: none;
+    }
+
+    /* Reduce padding in table cells */
+    .table th,
+    .table td {
+        padding: 0.5rem 0.4rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    .table thead th {
+        font-size: 0.65rem !important;
+        letter-spacing: 0 !important;
+    }
+
+    /* Truncate long movie titles */
+    .table tbody td:nth-child(3) {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+/* Footer Pills - Mobile */
+@media (max-width: 767.98px) {
+    .footer-customer-nav {
+        gap: 0.75rem !important;
+    }
+
+    .f-customer-pill {
+        padding: 10px 18px !important;
+        font-size: 0.65rem !important;
+        letter-spacing: 1px !important;
+    }
+
+    .f-customer-pill i {
+        font-size: 0.9rem !important;
+        margin-right: 8px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .f-customer-pill {
+        padding: 8px 14px !important;
+        font-size: 0.6rem !important;
+        flex: 1 1 auto;
+        justify-content: center;
+        min-width: 120px;
+    }
+}
+
+/* Booking Cards - Mobile */
+@media (max-width: 767.98px) {
+    .card-body.p-5 {
+        padding: 1.25rem !important;
+    }
+
+    .card-body.p-4 {
+        padding: 1rem !important;
+    }
+
+    /* Reduce button text size on mobile */
+    .btn.btn-lg {
+        padding: 0.6rem 1rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    .btn-lg.py-3 {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+    }
+}
+
+/* Seat Selection Summary Card - Mobile */
+@media (max-width: 991.98px) {
+    .col-lg-3 .card-body {
+        padding: 1rem !important;
+    }
+
+    .col-lg-3 .card-body .h4 {
+        font-size: 1.1rem !important;
+    }
+
+    .col-lg-3 .card-body .h2 {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Quick Actions Grid - Mobile */
+@media (max-width: 767.98px) {
+    .col-6 .btn {
+        padding: 0.75rem 0.5rem !important;
+        font-size: 0.7rem !important;
+    }
+
+    .col-6 .btn i {
+        margin-right: 0.25rem !important;
+    }
+}
+
+/* Page Titles - Mobile */
+@media (max-width: 767.98px) {
+    h2.border-start {
+        font-size: 1.25rem !important;
+        padding-left: 0.75rem !important;
+    }
+
+    h2.border-start+p {
+        font-size: 0.65rem !important;
+    }
+}
+
+/* Filters Section - Mobile */
+@media (max-width: 767.98px) {
+    .row.g-3>[class*="col-md-3"] {
+        margin-bottom: 0.5rem;
+    }
+
+    .form-label.small {
+        font-size: 0.65rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+}
+
+/* Receipt Page - Mobile */
+@media (max-width: 575.98px) {
+    .card-body.p-3.p-md-5 {
+        padding: 1rem !important;
+    }
+
+    .row.g-3 .col-6 {
+        padding-left: 0.25rem !important;
+        padding-right: 0.25rem !important;
+    }
+}
+
+/* Charts - Mobile */
+@media (max-width: 767.98px) {
+    canvas {
+        max-height: 250px !important;
+    }
+}
+
+/* Social Links - Mobile */
+@media (max-width: 575.98px) {
+    .social-link {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+/* Flash Messages on Mobile */
+@media (max-width: 767.98px) {
+    .swal2-popup {
+        width: 90% !important;
+        font-size: 0.9rem !important;
+    }
+}
